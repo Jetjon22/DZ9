@@ -16,7 +16,7 @@ class Main(tk.Frame):
         toolbar.pack(side=tk.TOP, fill=tk.X)
 
         # Добавить
-        self.add_img = tk.PhotoImage(file='C:/Users/Jetjon22/IdeaProjects/proekt/img/add.png')
+        self.add_img = tk.PhotoImage(file='img/add.png')
         btn_add = tk.Button(toolbar, bg='#d7d7d7', bd=0,
                             image=self.add_img, command=self.open_child)
         btn_add.pack(side=tk.LEFT)
@@ -171,7 +171,12 @@ class Update(Child):
         self.title('Редактировать позицию')
         self.btn_add.destroy()
 
-        self.btn_upd = ttk.Button(self, text='Редактировать', command=self.update_record)
+        self.btn_upd = ttk.Button(self, text='Редактировать')
+        self.btn_upd.bind('<Button-1>', lambda event:
+                          self.view.update_record(self.entry_name.get(),
+                                                  self.entry_phone.get(),
+                                                  self.entry_email.get()))
+        self.btn_upd.bind('<Button-1>', lambda event: self.destroy(), add='+')
         self.btn_upd.place(x=200, y=170)
 
     def default_data(self):
